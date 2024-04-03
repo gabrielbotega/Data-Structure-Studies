@@ -1,0 +1,57 @@
+There are two things necessary to use Dynamic Programming:
+
+=============================== First: Overlapping Subproblems ================================
+1) Overlapping Subproblems: When we say Overlapping Subproblems, we're saying that some subprobmes are repeating itselves. Imagine I 
+have a big problem and want to divide it in several subproblems. Ideally, they'll be equal subproblems. However, they could
+be different from each other and some of them might be equal. Therefore, this is called Overlapping Subproblems.
+
+Imagine you have 8 subproblems:  1 1 2 3 1 2 3 3 --- And imagine that each of these requires an enormous amount of computational 
+power.
+Therefore, since they're overlapping problems, there's no need to solve the same problem over and over again. Therefore, we could
+store the result in a list and, when we need to solve it again, we just return from the list O(1).
+
+The name of storing the answars of the subproblems is called **Momoization**.
+
+Note: MergeSort is not a canditate for Dynamic Programming since each of the dividing steps and merging steps are differente from each
+other.
+
+=============================== Second: Optimized Substructure ================================
+2) Optimized Substructure: Supose I have sobproblems. Therefore, in order to have a optimized solution to the bigger problem, 
+we need to have optimal solution to the smaller problems.
+
+Imagine a weighted Graph:
+
+     A -- 15 -- B
+     |          |
+     30         10
+     |          |
+     C -- 20 -- D
+
+     
+Suppose I want to go from A to D. This is my main problem. Obviously, the better solution is going to B and then D.
+Therefore, the optimized solution is the optmized subproblems solution.
+
+
+=============================== Importance - Example ================================
+A good example to explain these concepts and why Momoization is important is to think about the fibonacci sequence.
+
+def fib(n):
+     if n == 0 or n == 1:
+          return n
+     return fib(n-1) + fib(n-2)
+     
+
+This sequency is a good example because it has overlapping subproblems and are optimized.
+
+
+               fib(4)
+              /    \
+          fib(3)   fib(2)
+         /    \
+      fib(2)   fib(1)
+     /     \
+  fib(0)  fib(1)
+
+This tree shows us this. If I want to calculate the fib(4), we need the fib(3) and fib(2), however, we need to calculate over and over 
+the same thing.
+
